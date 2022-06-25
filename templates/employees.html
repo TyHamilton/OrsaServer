@@ -1,0 +1,57 @@
+{% extends 'base.html'%}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+
+
+
+
+<div class="card shadow">
+    <div class="card-header">Employees:
+        <a type="button" href="/Main" class="btn btn-outline-primary">Back</a>
+
+
+        {% if showDisabled %}
+        <a type="button" href="/Employees" class="btn btn-outline-warning">Show Enabled</a>
+        {% else %}
+        <a type="button" href="/EmployeesAll" class="btn btn-outline-warning">Show Disabled</a>
+        {% endif %}
+        <a type="button" href="/EmployeeNew" class="btn btn-outline-primary">Add Employee</a>
+       
+
+    </div>
+    <div class="card-body">
+
+        <table class="table table-striped">
+            <tr>
+                <th>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>DOB</th>
+                <th>Last Checkin</th>
+
+                <th>Select</th>
+            </tr>
+            {%for Employee in emps%}
+            <tr>
+                <td>{{Employee.id}}</td>
+                <td>{{Employee.fName}}</td>
+                <td>{{Employee.lName}}</td>
+                <td>{{Employee.DateOfB[5:]}}</td>
+                <td>{{Employee.LastClock}}</td>
+
+
+                <td><a type="button" href="/EmployeeUpdate/{{Employee.id}}" class="btn btn-outline-info">Select</a></td>
+            </tr>
+            {% endfor %}
+
+        </table>
+
+    </div>
+</div>
+</div>
+
+{% endblock %}

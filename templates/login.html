@@ -1,0 +1,33 @@
+{% extends 'base.html'%}
+
+{% block head %}
+
+{%  endblock %}
+
+{% block body %}
+<div class="card shadow" style="text-align: center; max-width: 30rem;">
+    <div class="card-header">Login:{{message}}</div>
+    <div class="card-body">
+        <form action="/LoginUser" method="POST" >
+            <table >
+                <tr>
+                    <td>User: </td>
+                    <td><input name="user" class="input-group-text" type="text"></td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td><input name="password" class="input-group-text" type="password"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit"  class="btn btn-outline-primary">Submit</button>
+                    </td>
+                    <td></td>
+                </tr>
+            </table>
+        </form>
+
+    </div>
+  </div>
+</div>
+{%  endblock %}

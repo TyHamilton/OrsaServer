@@ -1,0 +1,81 @@
+{% extends 'base.html'%}
+
+{% block head %}
+
+{%  endblock %}
+
+{% block body %}
+<div style="padding-left: 10%;padding-right: 10%; padding-top: 3%;padding-bottom: 3%;">
+    <div class="card shadow">
+        <div class="card-header">Add User:</div>
+        <div class="card-body">
+            <form action="/UserUpdate/{{userFetch.id}}" method="POST">
+
+                <div class="input-group">
+                    <table>
+                        <tr>
+                            <td>First</td>
+                            <td><input autocomplete="off" class="form-control" type="text" name="fName" id="fName" value="{{userFetch.fName}}" ></td>
+                        </tr>
+                        <tr>
+                            <td>Last</td>
+                            <td><input autocomplete="off" class="form-control" type="text" name="lName" id="lName" value={{userFetch.lName}}></td>
+                        </tr>
+                        <tr>
+                            <td>User Name</td>
+                            <td><input autocomplete="off" class="form-control" type="text" name="userName" id="userName" value ={{userFetch.userName}} ></td>
+                        </tr>
+                        <tr>
+                            <td>Password</td>
+                            <td><input autocomplete="off" class="form-control" type="password" name="password" id="password" value="{{userFetch.password}}" ></td>
+                        </tr>
+                    
+                        
+                        <tr>
+                            <td>Email</td>
+                            <td><input autocomplete="off" class="form-control" type="email" name="email" id="email" value="{{userFetch.email}}"></td>
+                        </tr>
+                      <div style="background-color: #e2f8ff83;">
+                        <tr>
+                            <td>
+                                {% if userFetch.admin ==0 %}
+                                <a class="btn" href="/X42/{{userFetch.id}}/0/1" >Make Admin</a>
+                                {%else%}
+                                <a class="btn"  href="/X42/{{userFetch.id}}/0/0">Remove Admin</a>
+                                {%endif%}
+                            </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            {% if userFetch.manager ==0 %}
+                            <a class="btn"  href="/X42/{{userFetch.id}}/1/1" >Make Manager</a>
+                            {%else%}
+                            <a class="btn"  href="/X42/{{userFetch.id}}/1/0">Remove Manager</a>
+                            {%endif%}
+                          </td>
+                        </tr>
+                        <tr>
+                      </div>
+                            <td>
+                                <button type="submit" value="Add Employee" class="form-control" type="button"
+                                    class="btn btn-outline-primary">Save</button>
+                                 
+                                   
+                            </td>
+                            <td>
+                                <a type="button" href="/UserDisable/{{userFetch.id}}" class="btn btn-outline-danger">Disable/Enable</a>
+                            </td>
+                        </tr>
+                        <tr><td>
+                            <a type="button" href="/Users" class="btn btn-outline-warning">Back</a>
+                        </td></tr>
+                    </table>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+</div>
+{%  endblock %}

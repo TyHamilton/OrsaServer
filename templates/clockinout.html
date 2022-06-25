@@ -1,0 +1,152 @@
+{% extends 'base.html'%}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+<script>
+  window.onload = function () {
+
+    const screenshotButton = document.getElementById("screenshot-button");
+    const img = document.getElementById("scShot");
+    const video = document.getElementById("vid");
+
+
+
+
+
+
+    const canvas = document.getElementById("canvas");
+
+    const constraints = {
+      video: { height: 300, width: 300 },
+    };
+
+    async function startCam() {
+      navigator.mediaDevices
+        .getUserMedia(constraints)
+        .then(handleSuccess)
+
+    };
+
+    screenshotButton.onclick = video.onclick = function () {
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      canvas.getContext("2d").drawImage(video, 0, 0);
+      // Other browsers will fall back to image/png
+      img.src = canvas.toDataURL("image/jpg");
+      var form = document.getElementById('imgageForm');
+      var image = document.getElementById('scShot').src;
+      var formData = new FormData(form);
+
+      // formData.append("file", dataURItoBlob(image));
+      formData.append("file", dataURLtoFile(image, "image.png"));
+
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.open("POST", "/ClockInOut/{{employee.id}}/{{message}}");
+
+      xmlhttp.send(formData);
+      document.location.href = "/";
+      // console.log(formData.get('file'));
+
+    };
+
+
+    function dataURLtoFile(dataurl, filename) {
+      var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+      while (n--) {
+        u8arr[n] = bstr.charCodeAt(n);
+      }
+      return new File([u8arr], filename, { type: mime });
+    }
+
+    function handleSuccess(stream) {
+      screenshotButton.disabled = false;
+      video.srcObject = stream;
+    }
+
+    function dataURItoBlob(dataURI) {
+      // convert base64 to raw binary data held in a string
+      // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
+      var byteString = atob(dataURI.split(',')[1]);
+
+      // separate out the mime component
+      var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
+
+      // write the bytes of the string to an ArrayBuffer
+      var ab = new ArrayBuffer(byteString.length);
+
+      // create a view into the buffer
+      var ia = new Uint8Array(ab);
+
+      // set the bytes of the buffer to the correct values
+      for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+      }
+
+      // write the ArrayBuffer to a blob, and you're done
+      var blob = new Blob([ab], { type: mimeString });
+      return blob;
+
+    }
+
+    startCam();
+  }
+
+
+
+</script>
+
+<div class="card shadow" style="text-align: center;">
+  <div class="card-header">Clock in/out:</div>
+  <div class="card-body">
+
+    <div class="container">
+      <div class="row">
+      <div class="col-sm">
+
+      </div>
+      <div class="col">
+        <video id="vid" autoplay height="300px" width="300px" style="max-width: 300px;max-height:300px;"></video>
+        <form id="imgageForm" method="post" enctype="multipart/form-data">
+          <img id="scShot" src="">
+          <canvas id="canvas" style="display:none;"></canvas>
+        </form>
+      </div>
+      <div class="col-sm"></div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+
+        </div>
+        <div class="col">
+          <table>
+            <tr>
+              <td>
+                <h2>{{employee.fName}} {{employee.lName}}</h2>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a button style="size: 3rem; font-size:3rem;" class="btn btn-outline-primary"
+                  id="screenshot-button">{{message}}</a>
+                <!-- <a style="size: 3rem; font-size:3rem;" class="btn btn-outline-primary" href="/ClockInOut/{{employee.id}}/{{message}}"> {{message}}</a> -->
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-sm">
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </div>
+</div>
+</div>
+{% endblock %}

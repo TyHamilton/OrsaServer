@@ -1,0 +1,134 @@
+{% extends 'base.html'%}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+
+<div style="padding-left: 10%;padding-right: 10%; padding-top: 3%;padding-bottom: 3%;">
+    <div class="card shadow">
+        <div class="card-header">Selected Employee:</div>
+        <div class="card-body">
+            <form action="/EmployeeUpdate/{{emloyeeSend.id}}" method="POST">
+                <table class="table table-striped">
+                    <tr>
+                        <td> First</td>
+                        <td><input autocomplete="off" class="form-control" type="text" name="fName" id="fName"
+                                value='{{emloyeeSend.fName}}'></td>
+                            
+                    </tr>
+                    <tr>
+                        <td>Last</td>
+                        <td><input autocomplete="off" class="form-control" type="text" name="lName" id="lName"
+                                value='{{emloyeeSend.lName}}'></td>
+                              
+
+                    </tr>
+                    <tr>
+                        <td>Date of Birth</td>
+                        <td><input autocomplete="off" class="form-control" type="date" name="DateOfB" id="DateOfB"
+                                value='{{emloyeeSend.DateOfB}}'></td>
+                               
+                    </tr>
+                    <tr>
+                        <td>PIN</td>
+                        <td><input autocomplete="off" class="form-control" type="number" name="pin" id="pin"></td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td><input type="email" autocomplete="off" class="form-control" type="date" name="email" id="email"
+                                value='{{emloyeeSend.email}}'></td>
+                              
+                    </tr>
+                    <tr>
+                        <td>Phone:</td>
+                        <td><input autocomplete="off" class="form-control" type="phone" name="phone" id="phone"
+                                value='{{emloyeeSend.phone}}'></td>
+                             
+
+                    <tr>
+                        <td>
+                            Last Checkin: {{emloyeeSend.LastClock}}
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Created: 
+                        </td>
+                        <td>{{emloyeeSend.createdDate}}</td>
+                       
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Term: 
+                        </td>
+                        <td>
+                            {%if emloyeeSend.disabled ==1%}
+                            {{emloyeeSend.TermDate}}
+                            {%endif%}
+                        </td>
+                        <td>
+                          
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="/EmoyeeIDFix/{{emloyeeSend.id}}" value="Update Employee" class="form-control" type="button"
+                            class="btn btn-outline-primary">Employee ID</a> 
+                        </td>
+                        <td>
+                            <a href="/EmoyeeIDView/{{emloyeeSend.id}}" value="Update Employee" class="form-control" type="button"
+                            class="btn btn-outline-primary">View ID</a> 
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <a href="/EmployeeDisable/{{emloyeeSend.id}}" value="Update Employee" class="form-control" type="button"
+                            class="btn btn-outline-primary">Disable/Enable</a> 
+                        </td>
+                        <td>
+                            <button type="submit" value="Update Employee" class="form-control" type="button"
+                                class="btn btn-outline-primary">Save</button>
+                            <br>
+                            <a type="button" href="/Employees" class="btn btn-outline-warning">Back</a>
+                        </td>
+                        <td>
+
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <table>
+            <th>Pic</th><th>In/Out</th><th>Time</th><th>Correct Time Stamp</th>
+            {% for time in times%}
+            <tr>
+               <td>
+                   <img src="/GetCheckInPic/{{time.id}}" style="max-width: 100px; max-height:100px">
+               </td>
+                <td>
+                    {{time.inOut}}
+                </td>
+                <td>
+                    {{time.timeStamp}}
+                </td>
+                <td>
+                    <a button class="btn btn-outline-primary" href="/ChangeTimeStamp/{{time.id}}">Correct</a>
+                </td>
+            </tr>
+            {%endfor%}
+        </table>
+
+    </div>
+
+</div>
+{% endblock %}

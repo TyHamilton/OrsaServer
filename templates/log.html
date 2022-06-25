@@ -1,0 +1,29 @@
+{% extends 'base.html'%}
+
+{% block head %}
+
+{%  endblock %}
+
+{% block body %}
+<div class="card shadow">
+    <div class="card-header">Log:
+        <a type="button" href="/Main" class="btn btn-outline-primary">Back</a>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered table-striped">
+            <th>#</th><th>Log</th><th>Time</th>
+            {% for log in sendLog%}
+            <tr>
+                
+                <td>{{log.id}}</td><td>{{log.log}}</td><td>{{log.createdDate}}</td>
+            </tr>
+            {%endfor%}
+        </table>
+      
+
+      
+
+    </div>
+  </div>
+</div>
+{%  endblock %}

@@ -1,0 +1,35 @@
+
+<script>
+    window.onload = async function() {
+        await new Promise(r => setTimeout(r, 15000));
+    console.log('Reloading..');
+    window.location.reload(true);
+
+    }
+</script>
+
+
+<table>
+    <th>Name</th><th>IP</th><th>Hot/Not</th>
+    {% for h in hosts%}
+        <tr>
+
+            <td>
+         {{h.name}}
+            </td>
+            <td>
+                {{h.ip}}
+            </td>
+            <td>
+                {%if h.didIrespond%}
+                <p style="color:red;">X</p>
+                {%else%}
+                <p style="color:green;">O</p>
+                {%endif%}
+            </td>
+        
+        </tr>
+
+
+    {%endfor%}
+</table>

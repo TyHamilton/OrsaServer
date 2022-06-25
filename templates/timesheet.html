@@ -1,0 +1,32 @@
+{% extends 'base.html'%}
+
+{% block head %}
+
+{%  endblock %}
+
+{% block body %}
+<div class="card shadow">
+    <div class="card-header">Time Sheets:    
+      <a type="button" href="/Main" class="btn btn-outline-primary">Back</a>
+      <form action="/TimeSheet" method="POST">
+      <label for="tp">Time Period:</label>
+      <input type="date" id="tp" name="tp">
+      <input type="submit">
+    </form></div>
+    <div class="card-body" style="overflow: auto;">
+        <table class="table table-bordered table-striped">
+          
+            {%for h in hd%}
+             <th>{{h}}</th>
+            {%endfor%}
+          {% for e in tb %}
+          <tr>
+            {%for l in e %}<td>{{l}}</td>{%endfor%}
+          </tr>
+          {%endfor%}
+        </table>
+
+    </div>
+  </div>
+</div>
+{%  endblock %}

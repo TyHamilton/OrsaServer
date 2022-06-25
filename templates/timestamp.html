@@ -1,0 +1,45 @@
+{% extends 'base.html'%}
+
+{% block head %}
+
+{%  endblock %}
+
+{% block body %}
+<div class="card shadow">
+    <div class="card-header">Edit time Stamp:</div>
+    <div class="card-body">
+        <form action="/ChangeTimeStamp/{{dataStuff.id}}" method="POST">
+
+            ({{dataStuff.id}}){{timeStamp}}
+            <div class="container">
+                <div class="row">
+                 <div class="col">
+                    <input autocomplete="off" class="form-control" type="date" name="date1" id="date">
+                 </div>
+                 <div class="col"> 
+                    <input autocomplete="off" class="form-control" type="time" name="time1" id="time">
+                 </div>
+                 <div class="row">
+                     <br>
+
+                 </div>
+                 <div class="row">
+                     <div class="col">
+                        <button type="submit" value="Update Time"  type="button"
+                        class="btn btn-outline-primary form-control ">Save</button>
+                     </div>
+                     <div class="col">
+                         <a href ="/EmployeeUpdate/{{dataStuff.employeeID}}" class="btn btn-outline-warning">Back</a>
+                     </div>
+     
+                 </div>
+     
+                </div>
+            </div>
+     
+        </form>
+
+    </div>
+  </div>
+</div>
+{%  endblock %}

@@ -1,0 +1,58 @@
+
+
+{% extends 'base.html'%}
+
+{% block head %}
+
+{%  endblock %}
+
+{% block body %}
+
+<script>
+  let x = document.cookie;
+
+</script>
+<div class="card shadow">
+    <div class="card-header">Tools:</div>
+    <div class="card-body">
+      <table style="text-align: center;">
+            <tr>
+                <td>
+                  {% if userSend.id>0%}
+                    <a class="btn btn-outline-primary" href="/TimeSheet">Time Sheets</a>
+                    {%endif%}
+                </td>
+                <td>
+                  {% if userSend.manager or userSend.admin %}
+             <a class="btn btn-outline-primary" href="/Employees">Emloyees</a>
+                  {%endif%}
+                </td>
+                <td>
+                  {% if userSend.admin%}
+                  <a class="btn btn-outline-primary" href="/Users">Users</a>
+                  {%endif%}
+                </td>
+                <td>
+                  {%if userSend.admin%}
+                  <a class="btn btn-outline-primary" href="/LogView">Log</a>
+                  {%endif%}
+                </td>
+                <td>
+                  <a class="btn btn-outline-primary" href="/Logout">logout</a>
+                </td>
+            </tr>
+          <tr>
+             
+          </tr>
+          <tr>
+          
+        </tr>
+        <tr>
+       
+      </tr>
+      </table>
+
+    </div>
+  </div>
+</div>
+{%  endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html'%}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+
+
+
+<div class="card shadow" style="max-width: 500px;">
+  <div class="card-header">Your Company Name:
+  
+  </div>
+  <div class="card-body" id = "idCard">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <form id="imgageForm" method="post" enctype="multipart/form-data"></form>
+          <img id="scShot" src="">
+          <canvas id="canvas" style="display:none;"></canvas>
+          {% if emp.photoBlob==null %}
+          
+            
+           
+
+
+           
+         
+          {%else%}
+          <img id="scShot" src="/phoView/{{emp.id}}">
+          {%endif%}
+        </form>
+        </div>
+
+        <div>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm">
+        {{emp.fName}} {{emp.lName}}<br>
+        <img src='/qrView/{{emp.id}}' width="300" height="300" />
+      </div>
+
+    </div>
+
+  </div>
+</div>
+</div>
+</div>
+<script>
+
+</script>
+{% endblock %}

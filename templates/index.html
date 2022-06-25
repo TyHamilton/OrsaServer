@@ -1,0 +1,80 @@
+{% extends 'base.html'%}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+
+        </div>
+        <div class="col">
+            <table>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="card shadow">
+                            <div class="card-header">Clock in/out: {{error}}</div>
+                            <div class="card-body">
+
+                                <form action="/QrCheckin" method="POST">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <input autocomplete="off" class="form-control" type="password" name="qrCheckin" id="qrCheckin">
+                                            </td>
+                                            <td>
+                                                QRCode
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </form>
+                               <form action="/ManualCheckin" method="POST">
+
+                            
+                                <br>
+                                <table>
+                                    <th>Select Employee</th>
+                                    <tr>
+                                        <td>
+                                            <select name="id" class="form-select" aria-label="Default select example">
+                                                <option selected value=""> </option>
+                                                {%for Employee in emps%}
+                                                <option name = "id" value="{{Employee.id}}">({{Employee.id}}) {{Employee.fName}} {{Employee.lName}}</option>
+                                                {%endfor%}
+                                            </select>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                       
+                                        <td><input autocomplete="off" class="form-control" type="password" name="pin" id="pin"></td>
+                                        <td>PIN</td>
+                                    </tr>
+                                    <tr>
+                                       <td>
+                                        <button type="submit" action="submit" class="btn btn-outline-info">Login</button>
+                                       </td>
+                                       <td></td>
+                                    </tr>
+                                </table>
+                                
+                                </form>
+                            </div>
+                          </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-sm">
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}

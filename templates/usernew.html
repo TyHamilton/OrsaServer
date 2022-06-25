@@ -1,0 +1,56 @@
+{% extends 'base.html'%}
+
+{% block head %}
+
+{%  endblock %}
+
+{% block body %}
+<div style="padding-left: 10%;padding-right: 10%; padding-top: 3%;padding-bottom: 3%;">
+    <div class="card shadow">
+        <div class="card-header">Add User:</div>
+        <div class="card-body">
+            <form action="/UserNew" method="POST">
+
+                <div class="input-group">
+                    <table>
+                        <tr>
+                            <td>First</td>
+                            <td><input autocomplete="off" class="form-control" type="text" name="fName" id="fName" ></td>
+                        </tr>
+                        <tr>
+                            <td>Last</td>
+                            <td><input autocomplete="off" class="form-control" type="text" name="lName" id="lName"></td>
+                        </tr>
+                        <tr>
+                            <td>User Name</td>
+                            <td><input autocomplete="off" class="form-control" type="text" name="userName" id="userName" ></td>
+                        </tr>
+                        <tr>
+                            <td>Password</td>
+                            <td><input autocomplete="off" class="form-control" type="password" name="password" id="password" ></td>
+                        </tr>
+                    
+                        
+                        <tr>
+                            <td>Email</td>
+                            <td><input autocomplete="off" class="form-control" type="email" name="email" id="email"></td>
+                        </tr>
+               
+                        <tr>
+                            <td>
+                                <button type="submit" value="Add Employee" class="form-control" type="button"
+                                    class="btn btn-outline-primary">Save</button>
+                                    <br>
+                                    <a type="button" href="/Users" class="btn btn-outline-warning">Back</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+</div>
+{%  endblock %}
